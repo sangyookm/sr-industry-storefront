@@ -6,6 +6,7 @@
 
 <script setup>
 import 'normalize.css'
+import '@/styles/main.import.scss'
 
 </script>
 
