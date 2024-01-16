@@ -169,27 +169,36 @@ onMounted(()=> {
     animation: 2s fadeIn ease-in-out;
     opacity: 0;
     mask-image: radial-gradient(circle, black, transparent);
+    // mask-image: linear-gradient(to bottom, black, transparent);
     mask-size: 100% 100%;
+    mask-position: 50% 50%;
     mask-repeat: no-repeat;
     animation-name: lightMovement;
-    animation-timing-function: ease;
-    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
   }
 }
 
 @keyframes lightMovement {
   0% {
-    // mask-size: 100% 100%;
+    mask-size: 100% 100%;
     opacity: 0;
+    mask-size: 100% 100%;
+
   }
   50% {
     // mask-size: 100% 100%;
     opacity: 0;
+
   }
   100% {
     opacity: 1;
-    // mask-size: 100% 100%;
+    // mask-size: 125% 125%;
+    // mask-position: 50% 15%;
+    mask-position: 50% 0%;
+    mask-size: 200% 200%;
+
   }
 }
 
