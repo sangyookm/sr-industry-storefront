@@ -1,21 +1,28 @@
-
 export default defineEventHandler(async ()=> {
-  const config = useRuntimeConfig()
-
+  console.log("Start GraphQL Test")
   try {
     const res = await $fetch(`https://e1d696-4.myshopify.com/api/2021-07/graphql.json`, {
+      method: 'post',
       headers: {
-        'X-Shopify-Storefront-Access-Token': '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'
+        'X-Shopify-Storefront-Access-Token': 'cacbb5355f7beaa76b27ba3e5b92ffda'
       },
-      query: JSON.stringify(`{
-        products(first: 3) {}
-      }`)
+      body: JSON.stringify({query: `{
+        products(first: 3)  {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+      }`})
+      
     })
-    console.log(res)
-  } catch (err) {
-    console.log(err)
-  } finally {
     console.log("GraphQL Test")
+    console.log(res)
+    return res
+  } catch (err) {
+    console.log(err, err.code, err.message)
   }
 })
 
