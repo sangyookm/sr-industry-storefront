@@ -15,9 +15,6 @@
 import NavbarDefault from '@/components/NavbarDefault.vue'
 import FooterDefault from '@/components/FooterDefault.vue'
 
-const { data } = await useAsyncData('/api/products', {
-  method: 'get',
-})
 
 
 </script>

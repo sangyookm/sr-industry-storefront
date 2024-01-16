@@ -61,6 +61,11 @@
 </template>
 
 <script setup>
+const { data } = await useAsyncData(()=> {
+  $fetch('/api/test', {
+    method: 'get',
+  })
+})
 
 const scrollY = ref(0)
 const innerHeight = ref(0)
