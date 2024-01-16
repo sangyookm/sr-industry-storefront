@@ -1,23 +1,34 @@
 <template>
   <div class="navbar">
     <div class="navbar-container">
-      <div class="navbar-left">
-        <div class="navbar-logo">
+      <div class="navbar-logo-wrap">
+        <NuxtLink
+          class="navbar-logo"
+          :to="{
+            name: 'index'
+          }"
+        >
           <LogoBadgeSolid />
-        </div>
+        </NuxtLink>
       </div>
-      <div class="navbar-center">
-        <nav class="navbar-menu">
+      <div class="navbar-menu-wrap">
+        <nav class="navbar-menu navbar-menu-large">
           <ul class="navbar-menu-list">
-            <li class="navbar-menu-item">STORE</li>
+            <li class="navbar-menu-item">
+              <NuxtLink :to="{
+                name: 'store'
+              }">
+                STORE
+              </NuxtLink>
+            </li>
             <li class="navbar-menu-item">PROJECTS</li>
             <li class="navbar-menu-item">ABOUT</li>
             <li class="navbar-menu-item">CONTACT</li>
           </ul>
         </nav>
       </div>
-      <div class="navbar-right">
-        <nav class="navbar-menu">
+      <div class="navbar-user-wrap">
+        <nav class="navbar-menu navbar-menu-large">
           <ul class="navbar-menu-list">
             <li class="navbar-menu-item">LOGIN</li>
             <li class="navbar-menu-item">CART</li>
@@ -47,11 +58,17 @@ import LogoBadgeSolid from '@/svg/logos/LogoBadgeSolid.vue';
 }
 
 .navbar-logo {
+  cursor: pointer;
+  display: block;
   height: 50px;
+  width: auto;
   svg {
     display: block;
     height: 100%;
     fill: #EFEFEF;
+  }
+  @media screen and (max-width: 940px) {
+    height: 40px;
   }
 }
 
@@ -65,7 +82,8 @@ import LogoBadgeSolid from '@/svg/logos/LogoBadgeSolid.vue';
 
 nav.navbar-menu {
   display: inline-flex;
-  font-family: Saira;
+  font-family: Audiowide;
+  // letter-spacing: 3px;
   color: #EFEFEF
 }
 
@@ -78,25 +96,51 @@ ul.navbar-menu-list {
   gap: 16px;
 }
 
-li.navbar-menu-item {
-  font-weight: 600;
+li.navbar-menu-item a {
+  // font-weight: 600;
+  pointer-events: auto;
+  color: white;
+  text-decoration: none;
 }
 
-.navbar-left,
-.navbar-right {
+.navbar-logo-wrap {
   display: flex;
   align-items: center;
   flex: 0.5;
-}
-.navbar-right {
-  justify-content: flex-end;
+  @media screen and (max-width: 940px) {
+    order: 2;
+    flex: auto;
+    justify-content: center;
+  }
 }
 
-.navbar-center {
+.navbar-user-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0.5;
+  @media screen and (max-width: 940px) {
+    order: 3;
+    flex: 0.5;
+  }
+}
+.navbar-menu-wrap {
   flex: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 940px) {
+    background-color: red;
+    order: 1;
+    flex: 0.5;
+  }
 }
+
+nav.navbar-menu-large {
+  @media screen and (max-width: 940px) {
+    display: none;
+  }
+}
+
 
 </style>
