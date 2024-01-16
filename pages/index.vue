@@ -4,7 +4,8 @@
       <div class="mast-inner">
         <div class="mast-image-wrapper">
           <img class="mc-main mc-dark" src="/public/mc_f1_1800_dark.png" alt="Mont Cervin Dark">
-          <img class="mc-main mc-light" src="/public/mc_f1_1800_light.png" alt="Mont Cervin Light" :style="{opacity: opacity}">
+          <!-- <img class="mc-main mc-light" src="/public/mc_f1_1800_light.png" alt="Mont Cervin Light" :style="{opacity: opacity}"> -->
+          <div class="mc-main mc-light" alt="Mont Cervin Light" :style="{opacity: opacity}"></div>
         </div>
       </div>
       <!-- <h1 class="mast-title">
@@ -82,7 +83,6 @@
 </template>
 
 <script setup>
-
 const scrollY = ref(0)
 const innerHeight = ref(0)
 
@@ -117,7 +117,6 @@ onMounted(()=> {
 </script>
 
 <style lang="scss" scoped>
-
 .mast {
   position: relative;
   height: calc(100svh - var(--navbar-height));
@@ -152,15 +151,45 @@ onMounted(()=> {
     width: 100%;
     height: auto;
   }
-  img.mc-light {
+  .mc-light {
+    width: 100%;
+    height: 100%;
+    background-image: url('/public/mc_f1_1800_light.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
     position: absolute;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
     display: block;
     width: 100%;
-    height: auto;
+    // height: auto;
     animation: 2s fadeIn ease-in-out;
+    opacity: 0;
+    mask-image: radial-gradient(circle, black, transparent);
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    animation-name: lightMovement;
+    animation-timing-function: ease;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes lightMovement {
+  0% {
+    // mask-size: 100% 100%;
+    opacity: 0;
+  }
+  50% {
+    // mask-size: 100% 100%;
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
+    // mask-size: 100% 100%;
   }
 }
 
