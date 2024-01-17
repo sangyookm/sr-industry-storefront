@@ -30,7 +30,15 @@
       <div class="navbar-user-wrap">
         <nav class="navbar-menu navbar-menu-large">
           <ul class="navbar-menu-list">
-            <li class="navbar-menu-item">LOGIN</li>
+            <li class="navbar-menu-item">
+              <NuxtLink
+                :to="{
+                  name: 'signin'
+                }"
+              >
+                LOGIN
+              </NuxtLink>
+            </li>
             <li class="navbar-menu-item">CART</li>
           </ul>
         </nav>
