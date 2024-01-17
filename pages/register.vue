@@ -21,6 +21,7 @@
 </template>
 
 <script setup>
+const isLoading = ref(false)
 
 const registerData = reactive({
   email: '',
@@ -31,14 +32,18 @@ const registerData = reactive({
 })
 
 const registerUser = async ()=> {
+  if (isLoading.value) return
   try {
+    isLoading.value = true
     const result = await $fetch('/api/customer/register', {
       method: 'post',
       body: registerData
     })
-    console.log( result )
+    console.log( 'register result', result )
   } catch (err) {
     console.log( err )
+  } finally {
+    isLoading.value = false
   }
 }
 

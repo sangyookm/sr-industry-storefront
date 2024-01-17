@@ -13,4 +13,12 @@ export default defineNuxtConfig({
       ]
     }
   },
+  modules: ['@nuxtjs/apollo'],
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: 'https://e1d696-4.myshopify.com/api/2021-07/graphql.json'
+      }
+    },
+  },
 })
