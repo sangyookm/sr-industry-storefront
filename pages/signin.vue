@@ -3,7 +3,7 @@
     <div class="forms">
       <div class="form-login-wrapper">
         <h1>Sign In</h1>
-        <form @submit.prevent>
+        <form @submit.prevent="handleFormSubmit">
           <input v-model="userData.email" placeholder="Email" />
           <input v-model="userData.password" placeholder="Password"/>
           <button>
@@ -18,10 +18,28 @@
 
 <script setup>
 
+const isLoading = ref(false)
+
 const userData = reactive({
   email: '',
   password: ''
 })
+
+const handleFormSubmit = async ()=> {
+  if (isLoading.value) return
+  try {
+    isLoading.value = true
+    const res = await $fetch('/api/customer/signin', {
+      method: 'post',
+      body: userData
+    })
+    console.log(res)
+  } catch (err) {
+    console.log(err)
+  } finally {
+    isLoading.value = false
+  }
+}
 
 </script>
 
