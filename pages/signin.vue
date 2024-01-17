@@ -4,8 +4,8 @@
       <div class="form-login-wrapper">
         <h1>Sign In</h1>
         <form @submit.prevent>
-          <input placeholder="Email" />
-          <input placeholder="Password"/>
+          <input v-model="userData.email" placeholder="Email" />
+          <input v-model="userData.password" placeholder="Password"/>
           <button>
             Sign In
           </button>
@@ -15,6 +15,15 @@
     </div>
   </div>
 </template>
+
+<script setup>
+
+const userData = reactive({
+  email: '',
+  password: ''
+})
+
+</script>
 
 <style lang="scss" scoped>
 
