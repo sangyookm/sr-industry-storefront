@@ -8,35 +8,19 @@ export default defineEventHandler(async (event)=> {
 
     console.log("Signin test", {email})
 
-    const res = await fetchShopify(`mutation customerAccessTokenCreate {
-      customerAccessTokenCreate(input: {email: "${email}", password: "${password}"}) {
-        customerAccessToken {
-          accessToken
-        }
-        customerUserErrors {
-          message
-        }
-      }
-    }`)
-    console.log(`[GraphQL] customerCreate result`, res, res.data.customerAccessTokenCreate)
-
-    const accessToken = res.data.customerAccessTokenCreate?.customerAccessToken?.accessToken
-    const customerErrors = res.data.customerAccessTokenCreate?.customerUserErrors
-    const serverErrors = res.data.errors
+    const { accessToken } = await customerAccessTokenCreate(email, password)
 
     if (accessToken) {
       setCookie(event, 'accessToken', accessToken)
+      const customer = await getCustomer(accessToken)
+
+      console.log(customer)
+
+      return { accessToken, customer }
     } 
-
-    if (customerErrors?.[0]) {
-      throw customerErrors?.[0]
-    }
-
-    if (serverErrors?.[0]) {
-      throw serverErrors?.[0]
-    }
     
-    return { accessToken }
+    throw { message: 'auth/mismatch' }
+
   } catch (err) {
     console.log(err)
     throw err
